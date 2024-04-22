@@ -52,18 +52,7 @@ circle {
 #progress {
     stroke-dasharray: 0 100;
     stroke: #8297AE;
-    /* animation: 2s ease progressBar; */
     transition: stroke-dasharray .5s ease;
-}
-
-@keyframes progressBar {
-    0% {
-        stroke-dasharray: 0 100;
-    }
-
-    100% {
-        stroke-dasharray: 50 100;
-    }
 }
 /* /Resume card */
 
@@ -86,14 +75,14 @@ circle {
     border-radius: 1rem;
 }
 
-.item-block > h2 {
-    width: 75%;
-}
-
 .item-self {
     display: flex;
     align-items: center;
     gap: .5rem;
+}
+
+.item-self > h2 {
+    font-size: 1rem;
 }
 
 .circle {
@@ -104,11 +93,11 @@ circle {
 }
 
 .ingress-circle {
-    background-color: #DCDCDC;
+    background-color: green;
 }
 
 .outgress-circle {
-    background-color: #8297AE;
+    background-color: red;
 }
 
 .btn-container {
