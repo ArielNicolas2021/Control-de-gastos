@@ -101,8 +101,15 @@ circle {
 }
 
 .btn-container {
-    text-align: center;
-    margin: 2rem;
+    background-color: #3d3d3d;
+    height: 5rem;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .add-btn {
@@ -110,20 +117,16 @@ circle {
     color: white;
     border: none;
     border-radius: 2rem;
-    width: 50%;
-    height: 3rem;
-    position: absolute;
-    bottom: 0;
-    right: 25%;
-    transform: translate(0, -50%);
+    padding: .5rem 0;
     font-size: 1.5rem;
     font-weight: bold;
+    width: 70%;
 }
 /* /items */
 
 /* Form */
 .grid {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     display: grid;

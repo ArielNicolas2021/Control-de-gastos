@@ -1,10 +1,12 @@
 // Open form to add items
 let addBtn = document.getElementById('addBtn')
 let grid = document.getElementById('grid')
+let btnContainer = document.getElementById('btnContainer')
 
 addBtn.addEventListener('click', () => {
     grid.classList.add('show')
     closeForm.style.display = 'block'
+    btnContainer.style.display = 'none'
 })
 
 // Close form
@@ -14,6 +16,7 @@ let closeForm = document.getElementById('closeForm')
 closeForm.addEventListener('click', () => {
     grid.classList.remove('show')
     closeForm.style.display = 'none'
+    btnContainer.style.display = 'flex'
 })
 
 // Add event to ingress & outgress inputs
