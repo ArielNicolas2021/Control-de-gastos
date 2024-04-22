@@ -45,6 +45,13 @@ let totalOutgress = 0
 let progress = document.getElementById('progress')
 let totalIngress = 0
 let progressPorcent = 0
+function formatNmb(nNmb){
+    var sRes = "";
+    for (var j, i = nNmb.length - 1, j = 0; i >= 0; i--, j++) 
+        sRes = nNmb.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + sRes;
+        return sRes;
+    
+    }
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -65,6 +72,7 @@ form.addEventListener('submit', (e) => {
         localStorage.setItem('items', JSON.stringify(array))
 
         // Create the item in a dashboard
+        let mountNum = array[array.length - 1].mount
         let createItem = document.createElement('div')
         createItem.classList.add('item-block')
         createItem.innerHTML = `
@@ -72,7 +80,7 @@ form.addEventListener('submit', (e) => {
                 <div class="circle ${array[array.length - 1].category}"></div>
                 <h2 class="item-text" id="${array[array.length - 1].id}">${array[array.length - 1].item}</h2>
             </div>
-            <span>${array[array.length - 1].sign}$${array[array.length - 1].mount}</span>
+            <span>${array[array.length - 1].sign}$${formatNmb(mountNum.toString())}</span>
         `
         items.appendChild(createItem)
 
@@ -96,9 +104,9 @@ form.addEventListener('submit', (e) => {
             balance = totalIngress - totalOutgress
             
             // Print in the app
-            document.getElementById('balance').innerHTML = balance
+            document.getElementById('balance').innerHTML = formatNmb(balance.toString())
             progress.style.strokeDasharray = `${progressPorcent} 100`
-            document.getElementById('totalOutgress').innerHTML = totalOutgress
+            document.getElementById('totalOutgress').innerHTML = formatNmb(totalOutgress.toString())
             
             // Local storage
             localStorage.setItem('balance', JSON.stringify(balance))
@@ -114,9 +122,10 @@ form.addEventListener('submit', (e) => {
 
             // Balance
             balance = totalIngress - totalOutgress
+            console.log(formatNmb('25000'))
 
             // Print in the app
-            document.getElementById('balance').innerHTML = balance
+            document.getElementById('balance').innerHTML = formatNmb(balance.toString())
 
             // Local storage
             localStorage.setItem('balance', JSON.stringify(balance))
@@ -153,8 +162,8 @@ items.addEventListener('click', (e) => {
             balance = totalIngress - totalOutgress
 
             // Print in the app
-            document.getElementById('balance').innerHTML = balance
-            document.getElementById('totalOutgress').innerHTML = totalOutgress
+            document.getElementById('balance').innerHTML = formatNmb(balance.toString())
+            document.getElementById('totalOutgress').innerHTML = formatNmb(totalOutgress.toString())
 
             // Local storage
             localStorage.setItem('balance', JSON.stringify(balance))
@@ -172,7 +181,7 @@ items.addEventListener('click', (e) => {
             balance = totalIngress - totalOutgress
 
             // Print in the app
-            document.getElementById('balance').innerHTML = balance
+            document.getElementById('balance').innerHTML = formatNmb(balance.toString())
 
             // Local storage
             localStorage.setItem('balance', JSON.stringify(balance))
@@ -188,6 +197,7 @@ window.addEventListener('load', () => {
     let getItems = JSON.parse(localStorage.getItem('items'))
     for(let i of getItems) {
         array = [...array, i]
+        let mountNum = i.mount
         let createItem = document.createElement('div')
         createItem.classList.add('item-block')
         createItem.innerHTML = `
@@ -195,19 +205,19 @@ window.addEventListener('load', () => {
                 <div class="circle ${i.category}"></div>
                 <h2 class="item-text" id="${array[array.length - 1].id}">${i.item}</h2>
             </div>
-            <span>${i.sign}$${i.mount}</span>
+            <span>${i.sign}$${formatNmb(mountNum.toString())}</span>
         `
         items.appendChild(createItem)
     }
     // Get balance
     let getBalance = JSON.parse(localStorage.getItem('balance'))
     balance = getBalance
-    document.getElementById('balance').innerHTML = balance
+    document.getElementById('balance').innerHTML = formatNmb(balance.toString())
 
     // Get total outgress
     let getTotalOutgress = JSON.parse(localStorage.getItem('totalOutgress'))
     totalOutgress = getTotalOutgress
-    document.getElementById('totalOutgress').innerHTML = parseInt(totalOutgress)
+    document.getElementById('totalOutgress').innerHTML = formatNmb(totalOutgress.toString())
 
     // Get total ingress
     let getTotalIngress = JSON.parse(localStorage.getItem('totalIngress'))
