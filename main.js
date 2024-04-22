@@ -94,6 +94,7 @@ form.addEventListener('submit', (e) => {
         outgress.style.backgroundColor = '#D4DBE3'
         grid.classList.remove('show')
         closeForm.style.display = 'none'
+        btnContainer.style.display = 'flex'
 
         // Modifications
         if(array[array.length - 1].sign === '-') {
