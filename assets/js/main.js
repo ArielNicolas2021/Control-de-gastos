@@ -48,13 +48,7 @@ let totalOutgress = 0
 let progress = document.getElementById('progress')
 let totalIngress = 0
 let progressPorcent = 0
-function formatNmb(nNmb){
-    var sRes = "";
-    for (var j, i = nNmb.length - 1, j = 0; i >= 0; i--, j++) 
-        sRes = nNmb.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + sRes;
-        return sRes;
-    
-    }
+
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -75,7 +69,7 @@ form.addEventListener('submit', (e) => {
         localStorage.setItem('items', JSON.stringify(array))
 
         // Create the item in a dashboard
-        let mountNum = array[array.length - 1].mount
+        let mountNum = parseFloat(array[array.length - 1].mount)
         let createItem = document.createElement('div')
         createItem.classList.add('item-block')
         createItem.innerHTML = `
@@ -83,7 +77,7 @@ form.addEventListener('submit', (e) => {
                 <div class="circle ${array[array.length - 1].category}"></div>
                 <h2 class="item-text" id="${array[array.length - 1].id}">${array[array.length - 1].item}</h2>
             </div>
-            <span>${array[array.length - 1].sign}$${formatNmb(mountNum.toString())}</span>
+            <span>${array[array.length - 1].sign}$${mountNum.toLocaleString()}</span>
         `
         items.appendChild(createItem)
 
@@ -99,7 +93,7 @@ form.addEventListener('submit', (e) => {
         // Modifications
         if(array[array.length - 1].sign === '-') {
             // Total outgress
-            totalOutgress = totalOutgress + parseInt(array[array.length - 1].mount)
+            totalOutgress = totalOutgress + parseFloat(array[array.length - 1].mount)
 
             // Porcent progress
             progressPorcent = totalOutgress / totalIngress * 100
@@ -108,9 +102,9 @@ form.addEventListener('submit', (e) => {
             balance = totalIngress - totalOutgress
             
             // Print in the app
-            document.getElementById('balance').innerHTML = formatNmb(balance.toString())
+            document.getElementById('balance').innerHTML = balance.toLocaleString()
             progress.style.strokeDasharray = `${progressPorcent} 100`
-            document.getElementById('totalOutgress').innerHTML = formatNmb(totalOutgress.toString())
+            document.getElementById('totalOutgress').innerHTML = totalOutgress.toLocaleString()
             
             // Local storage
             localStorage.setItem('balance', JSON.stringify(balance))
@@ -118,7 +112,7 @@ form.addEventListener('submit', (e) => {
             localStorage.setItem('totalIngress', JSON.stringify(totalIngress))
         } else {
             // total ingress
-            totalIngress = totalIngress + parseInt(array[array.length - 1].mount)
+            totalIngress = totalIngress + parseFloat(array[array.length - 1].mount)
 
             // Porcent progress
             progressPorcent = totalOutgress / totalIngress * 100
@@ -126,10 +120,9 @@ form.addEventListener('submit', (e) => {
 
             // Balance
             balance = totalIngress - totalOutgress
-            console.log(formatNmb('25000'))
 
             // Print in the app
-            document.getElementById('balance').innerHTML = formatNmb(balance.toString())
+            document.getElementById('balance').innerHTML = balance.toLocaleString()
 
             // Local storage
             localStorage.setItem('balance', JSON.stringify(balance))
@@ -147,7 +140,7 @@ items.addEventListener('click', (e) => {
         event.parentNode.parentNode.remove()
 
         // Remove from local storage
-        const deleteId = parseInt(event.getAttribute('id'))
+        const deleteId = parseFloat(event.getAttribute('id'))
         const deleteArray = array.filter(i => i.id == deleteId)
         const newArray = array.filter(i => i.id != deleteId)
         array = newArray
@@ -156,7 +149,7 @@ items.addEventListener('click', (e) => {
         // Change values
         if(deleteArray[0].sign === '-') {
             // Total outgress
-            totalOutgress = totalOutgress - parseInt(deleteArray[0].mount)
+            totalOutgress = totalOutgress - parseFloat(deleteArray[0].mount)
 
             // Progress porcent
             progressPorcent = totalOutgress / totalIngress * 100
@@ -166,8 +159,8 @@ items.addEventListener('click', (e) => {
             balance = totalIngress - totalOutgress
 
             // Print in the app
-            document.getElementById('balance').innerHTML = formatNmb(balance.toString())
-            document.getElementById('totalOutgress').innerHTML = formatNmb(totalOutgress.toString())
+            document.getElementById('balance').innerHTML = balance.toLocaleString()
+            document.getElementById('totalOutgress').innerHTML = totalOutgress.toLocaleString()
 
             // Local storage
             localStorage.setItem('balance', JSON.stringify(balance))
@@ -175,7 +168,7 @@ items.addEventListener('click', (e) => {
             localStorage.setItem('totalIngress', JSON.stringify(totalIngress))
         } else {
             // total ingress
-            totalIngress = totalIngress - parseInt(deleteArray[0].mount)
+            totalIngress = totalIngress - parseFloat(deleteArray[0].mount)
 
             // Porcent progress
             progressPorcent = totalOutgress / totalIngress * 100
@@ -185,7 +178,7 @@ items.addEventListener('click', (e) => {
             balance = totalIngress - totalOutgress
 
             // Print in the app
-            document.getElementById('balance').innerHTML = formatNmb(balance.toString())
+            document.getElementById('balance').innerHTML = balance.toLocaleString()
 
             // Local storage
             localStorage.setItem('balance', JSON.stringify(balance))
@@ -201,7 +194,7 @@ window.addEventListener('load', () => {
     let getItems = JSON.parse(localStorage.getItem('items'))
     for(let i of getItems) {
         array = [...array, i]
-        let mountNum = i.mount
+        let mountNum = parseFloat(i.mount)
         let createItem = document.createElement('div')
         createItem.classList.add('item-block')
         createItem.innerHTML = `
@@ -209,25 +202,25 @@ window.addEventListener('load', () => {
                 <div class="circle ${i.category}"></div>
                 <h2 class="item-text" id="${array[array.length - 1].id}">${i.item}</h2>
             </div>
-            <span>${i.sign}$${formatNmb(mountNum.toString())}</span>
+            <span>${i.sign}$${mountNum.toLocaleString()}</span>
         `
         items.appendChild(createItem)
     }
     // Get balance
     let getBalance = JSON.parse(localStorage.getItem('balance'))
     balance = getBalance
-    document.getElementById('balance').innerHTML = formatNmb(balance.toString())
+    document.getElementById('balance').innerHTML = balance.toLocaleString()
 
     // Get total outgress
     let getTotalOutgress = JSON.parse(localStorage.getItem('totalOutgress'))
     totalOutgress = getTotalOutgress
-    document.getElementById('totalOutgress').innerHTML = formatNmb(totalOutgress.toString())
+    document.getElementById('totalOutgress').innerHTML = totalOutgress.toLocaleString()
 
     // Get total ingress
     let getTotalIngress = JSON.parse(localStorage.getItem('totalIngress'))
     totalIngress = getTotalIngress
     
     // Progress porcent
-    progressPorcent = parseInt(totalOutgress) / parseInt(totalIngress) * 100
+    progressPorcent = parseFloat(totalOutgress) / parseFloat(totalIngress) * 100
     progress.style.strokeDasharray = `${progressPorcent} 100`
 })
