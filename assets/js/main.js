@@ -70,6 +70,9 @@ let dates = {
     balance: 0
 }
 
+let circleProgress = document.getElementById('circleProgress')
+let circle = document.getElementById('circle')
+
 // Add item on the app
 function createItem() {
 	const mountNum = parseFloat(itemsArray[itemsArray.length - 1].mount)
@@ -94,7 +97,7 @@ function createItem() {
 		
 		// Print in the app
 		document.getElementById('balance').innerHTML = dates.balance.toLocaleString()
-		progress.style.strokeDasharray = `${dates.progressPorcent} 100`
+		circleProgress.style.strokeDasharray = `${dates.progressPorcent} 100`
 		document.getElementById('totalOutgress').innerHTML = dates.totalOutgress.toLocaleString()
 		
 		// Local storage
@@ -105,7 +108,7 @@ function createItem() {
 
 		// Porcent progress
 		dates.progressPorcent = dates.totalOutgress / dates.totalIngress * 100
-		progress.style.strokeDasharray = `${dates.progressPorcent} 100`
+		circleProgress.style.strokeDasharray = `${dates.progressPorcent} 100`
 
 		// Balance
 		dates.balance = dates.totalIngress - dates.totalOutgress
@@ -123,8 +126,10 @@ function clearForm() {
 	item.value = ''
     mount.value = ''
     desc.value = ''
-	formContainer.style.transform = 'scale(0)'
-    formContent.style.transform = 'scale(0)'
+    if (screen.width < 768) {
+        formContainer.style.transform = 'scale(0)'
+        formContent.style.transform = 'scale(0)'
+    }
 }
 
 // Delete a item
@@ -148,7 +153,7 @@ items.addEventListener('click', (e) => {
 
             // Progress porcent
             dates.progressPorcent = dates.totalOutgress / dates.totalIngress * 100
-            progress.style.strokeDasharray = `${dates.progressPorcent} 100`
+            circleProgress.style.strokeDasharray = `${dates.progressPorcent} 100`
 
             // Balance
             dates.balance = dates.totalIngress - dates.totalOutgress
@@ -165,7 +170,7 @@ items.addEventListener('click', (e) => {
 
             // Porcent progress
             dates.progressPorcent = dates.totalOutgress / dates.totalIngress * 100
-            progress.style.strokeDasharray = `${dates.progressPorcent} 100`
+            circleProgress.style.strokeDasharray = `${dates.progressPorcent} 100`
 
             // Balance
             dates.balance = dates.totalIngress - dates.totalOutgress
@@ -210,5 +215,5 @@ window.addEventListener('load', () => {
     
     // Progress porcent
     dates.progressPorcent = parseFloat(dates.totalOutgress) / parseFloat(dates.totalIngress) * 100
-    progress.style.strokeDasharray = `${dates.progressPorcent} 100`
+    circleProgress.style.strokeDasharray = `${dates.progressPorcent} 100`
 })
