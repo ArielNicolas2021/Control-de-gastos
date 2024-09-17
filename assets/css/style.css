@@ -1,5 +1,5 @@
 /* Global */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
 
 * {
     margin: 0;
@@ -9,26 +9,44 @@
 
 body {
     min-height: 100vh;
-    font-family: "Inter", sans-serif;
-    background-color: #292929;
-    color: white;
+    font-family: "Maven Pro", sans-serif;
+    background-color: #F1F7FE;
+    color: #112D4E;
+}
+
+button,
+input,
+textarea {
+    font-family: "Maven Pro", sans-serif;
 }
 /* /Global */
 
 /* Header */
 .header {
     text-align: center;
-    padding-top: 1rem;
+    padding: 1rem 0;
+}
+
+.header > h1 {
+    font-size: 28px;
+}
+
+.header > h3 {
+    font-size: 1rem;
 }
 /* /Header */
 
 /* Resume card */
 .resume {
-    background-color: #3d3d3d;
-    text-align: center;
-    margin: 1rem;
+    background-color: #C1DDF6;
+    margin: 1rem auto;
     border-radius: 1rem;
     position: relative;
+    width: 208px;
+    height: 208px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .resume-total {
@@ -36,8 +54,9 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.5rem;
-    color: #8297AE;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #112D4E;
 }
 
 circle {
@@ -46,44 +65,39 @@ circle {
     transform: rotate(-90deg);
     transform-origin: 50%;
     stroke-dasharray: 100 100;
-    stroke: white;
+    stroke: #F1F7FE;
 }
 
 #progress {
     stroke-dasharray: 0 100;
-    stroke: #8297AE;
+    stroke: #144778;
     transition: stroke-dasharray .5s ease;
 }
 /* /Resume card */
 
 /* Items */
 .items {
+    margin-bottom: 6rem;
+    padding: 1rem 27px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
     gap: 1rem;
-    margin-bottom: 6rem;
 }
 
 .item-block {
-    background-color: #3d3d3d;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem 1rem;
-    margin: 0 1rem;
+    background-color: #C1DDF6;
+    padding: 1rem;
     border-radius: 1rem;
-}
-
-.item-self {
+    width: 321px;
     display: flex;
     align-items: center;
-    gap: .5rem;
 }
 
-.item-self > h2 {
-    font-size: 1rem;
+.item-block > p {
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
 }
 
 .circle {
@@ -93,20 +107,9 @@ circle {
     border-radius: 50%;
 }
 
-.ingress-circle {
-    background-color: green;
-}
-
-.outgress-circle {
-    background-color: red;
-}
-
 .btn-container {
-    background-color: #3d3d3d;
-    height: 5rem;
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 1rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -114,96 +117,149 @@ circle {
 }
 
 .add-btn {
-    background-color: #8297AE;
+    background-color: #3F4669;
     color: white;
     border: none;
-    border-radius: 2rem;
-    padding: .5rem 0;
-    font-size: 1.5rem;
+    border-radius: 1rem;
+    font-size: 20px;
     font-weight: bold;
-    width: 70%;
+    width: 321px;
+    height: 56px;
+    cursor: pointer;
+    transition: background .3s ease-out;
+}
+
+.add-btn:hover {
+    background: #292D42;
 }
 /* /items */
 
 /* Form */
-.grid {
+.add-form {
     position: fixed;
     bottom: 0;
-    width: 100%;
-    display: grid;
-    grid-template-rows: 0fr;
-    background-color: #3d3d3d;
-    transition: grid-template-rows .3s ease;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
 }
 
-#form {
+.add-form-content {
+    width: 321px;
+    background-color: #C1DDF6;
+    transform: scale(0);
+    transition: transform .3s ease-out;
+}
+
+.form {
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    overflow: hidden;
 }
 
-.show {
-    grid-template-rows: 1fr;
-    padding: 2rem;
+.form-title {
+    display: flex;
+    align-items: center;
 }
 
-#form > svg {
-    position: absolute;
-    right: 3%;
-    top: 3%;
-    fill: #fff;
-    display: none;
-}
-
-#form > h2 {
+.form-title > h2 {
+    width: 100%;
     text-align: center;
 }
 
-.item-input,
-.mount-input {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-}
-
-#item,
-#mount {
-    border-radius: 1rem;
-    border: none;
-    background-color: #D4DBE3;
-    height: 2.5rem;
-}
-
-.category {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.ingress,
-.outgress {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#ingress,
-#outgress {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    background-color: #D4DBE3;
+.bx-x {
+    color: #112D4E;
+    font-size: 2rem;
     cursor: pointer;
 }
 
-#form > button {
-    background-color: #8297AE;
+.item-input {
+    display: flex;
+    align-items: center;
+}
+
+.item-input .bx {
+    font-size: 2rem;
+    background: #3F4669;
+    color: white;
+    cursor: pointer;
+}
+
+.form label {
+    display: none;
+}
+
+.form input {
     border: none;
-    border-radius: 2rem;
+    width: 100%;
+    height: 2rem;
+    padding: 0 1rem;
+}
+
+.form textarea {
+    border: none;
+    width: 100%;
+    height: 128px;
+    padding: .5rem 1rem;
+}
+
+.form > button {
+    background-color: #3F4669;
+    border: none;
     height: 2.5rem;
     font-size: 1rem;
     color: white;
     font-weight: bold;
+    cursor: pointer;
+    transition: background .3s ease-out;
+}
+
+.form > button:hover {
+    background: #292D42;
+}
+
+/* Desktop query */
+@media(min-width: 768px){
+    main {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .main-container {
+        width: 100%;
+    }
+
+    .bx-x {
+        display: none !important;
+    }
+
+    .add-form {
+        transform: scale(1);
+        background: none;
+        position: initial;
+        width: auto;
+        height: auto;
+    }
+
+    .add-form-content {
+        transform: scale(1);
+    }
+
+    .btn-container {
+        display: none;
+    }
+
+    .items {
+        margin: 0;
+        width: 100%;
+    }
+
+    .item-block {
+        width: 100%;
+        max-width: 450px;
+    }
 }
