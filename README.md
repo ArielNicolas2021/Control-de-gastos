@@ -1,13 +1,19 @@
 # Control de gastos
 
-![Index](./assets/images/Grabar_2024_04_23_20_52_34_687.gif)
+Control de gastos es una aplicación web que permite controlar gastos del usuario. Puedes agregar y eliminar ingresos y egresos para llevar el control
 
-## Descripción
+## Imágenes
 
-Aplicación web mobile para controlar tus gastos.
+![](./assets/images/controldegastosmobile.jpeg)
+![](./assets/images/controldegastosdesktop.jpeg)
+
+## Link
+[Ver el sitio web](https://arielnicolas2021.github.io/Control-de-gastos/)
 
 ## Tecnologías usadas
 
 - HTML
 - CSS
 - Javascript
+
+### Disponible para PC y celular!
