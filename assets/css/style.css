@@ -1,70 +1,92 @@
 /* Global */
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
 
+:root {
+    --green-vogue-50: #F1F7FE;
+    --green-vogue-100: #E3EEFB;
+    --green-vogue-200: #C1DDF6;
+    --green-vogue-300: #8AC1EF;
+    --green-vogue-400: #4BA0E5;
+    --green-vogue-500: #2484D3;
+    --green-vogue-600: #1668B3;
+    --green-vogue-700: #135291;
+    --green-vogue-800: #144778;
+    --green-vogue-900: #163C64;
+    --green-vogue-950: #112D4E;
+    --h1: 28px;
+    --h2: 24px;
+    --h3: 20px;
+    --p1: 16px;
+    --p2: 14px;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Maven Pro", sans-serif;
 }
 
 body {
     min-height: 100vh;
-    font-family: "Maven Pro", sans-serif;
-    background-color: #F1F7FE;
-    color: #112D4E;
+    background-color: var(--green-vogue-50);
+    color: var(--green-vogue-950);
 }
 
-button,
-input,
-textarea {
-    font-family: "Maven Pro", sans-serif;
-}
 /* /Global */
 
 /* Header */
 .header {
+    height: 84px;
     text-align: center;
-    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.header > h1 {
-    font-size: 28px;
+.header_title {
+    font-size: var(--p1);
+    font-weight: 500;
 }
 
-.header > h3 {
-    font-size: 1rem;
+.header_sueldoAmount {
+    font-size: var(--h3);
 }
+
 /* /Header */
 
-/* Resume card */
-.resume {
-    background-color: #C1DDF6;
-    margin: 1rem auto;
-    padding: 2rem;
-    border-radius: 1rem;
-    position: relative;
+/* App */
+.app {
+    height: calc(100vh - 84px);
+}
+/* /App */
+
+/* Porcent */
+.app_porcent {
+    background-color: var(--green-vogue-200);
     width: 208px;
     height: 208px;
+    margin: 1rem auto;
+    border-radius: 1rem;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.resume-circle {
+.porcent {
+    width: 75%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.porcent_circle {
     width: 100%;
     height: 100%;
 }
-
-.resume-total {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1rem;
-    font-weight: bold;
-    color: #112D4E;
-}
-
 
 circle {
     fill: none;
@@ -72,19 +94,67 @@ circle {
     transform: rotate(-90deg);
     transform-origin: 50%;
     stroke-dasharray: 100 100;
-    stroke: #F1F7FE;
+    stroke: var(--green-vogue-50);
 }
 
 #circleProgress {
     stroke-dasharray: 0 100;
-    stroke: #144778;
+    stroke: var(--green-vogue-950);
     transition: stroke-dasharray .5s ease;
 }
-/* /Resume card */
+
+.porcent_total {
+    color: var(--green-vogue-950);
+    font-size: 1rem;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+}
+
+.porcent_gastoAmount {
+    font-size: var(--p1);
+    font-weight: 500;
+}
+
+.porcent_totalOutgress {
+    font-size: var(--h3);
+}
+/* /Porcent */
+
+/* Date */
+.app_date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.date_down,
+.date_up {
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    font-size: var(--h1);
+}
+
+.date_text {
+    font-weight: bold;
+    font-size: var(--h3);
+    user-select: none;
+}
+/* /Date */
 
 /* Items */
-.items {
-    margin-bottom: 6rem;
+.app_items {
+    max-height: 339px;
+    overflow-y: auto;
     padding: 1rem 27px;
     display: flex;
     flex-direction: column;
@@ -92,61 +162,57 @@ circle {
     gap: 1rem;
 }
 
-.item-block {
-    background-color: #C1DDF6;
+.item_block {
+    background-color: var(--green-vogue-200);
     padding: 1rem;
     border-radius: 1rem;
     width: 321px;
     display: flex;
     align-items: center;
-}
-
-.item-block > p {
-    font-weight: bold;
     cursor: pointer;
-    width: 100%;
 }
 
-.item-block > span {
+.item_text {
+    width: 100%;
+    text-transform: capitalize;
     font-weight: bold;
+    user-select: none;
+    pointer-events: none;
 }
 
-.circle {
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: #8297AE;
-    border-radius: 50%;
+.item_amount {
+    font-weight: bold;
+    user-select: none;
+    pointer-events: none;
 }
 
-.btn-container {
-    position: fixed;
-    bottom: 1rem;
-    width: 100%;
+/* Button */
+
+/* /Button */
+.app_button {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
-
-.add-btn {
-    background-color: #3F4669;
-    color: white;
-    border: none;
-    border-radius: 1rem;
-    font-size: 20px;
-    font-weight: bold;
+.add_btn {
+    background-color: var(--green-vogue-500);
+    color: var(--green-vogue-50);
     width: 321px;
-    height: 56px;
+    padding: 1rem 0;
+    font-weight: bold;
+    border: none;
+    border-radius: .5rem;
     cursor: pointer;
     transition: background .3s ease-out;
 }
 
-.add-btn:hover {
-    background: #292D42;
+.add_btn:hover {
+    background: var(--green-vogue-600);
 }
+
 /* /items */
 
-/* Form */
-.add-form {
+/* Add form */
+.app_addForm {
     position: fixed;
     bottom: 0;
     width: 100vw;
@@ -158,137 +224,199 @@ circle {
     transform: scale(0);
 }
 
-.add-form-content {
-    width: 321px;
+.addForm_content {
+    width: 100%;
+    max-width: 321px;
     background-color: #C1DDF6;
     transform: scale(0);
     transition: transform .3s ease-out;
 }
 
-.form {
+.addForm_form {
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.form-title {
+.form_header {
     display: flex;
     align-items: center;
 }
 
-.form-title > h2 {
+.form_title {
     width: 100%;
     text-align: center;
 }
 
-.bx-x {
-    color: #112D4E;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-.item-input {
+.form_block {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: .25rem;
 }
 
-.item-input .bx {
+.bx-plus-circle,
+.bx-minus-circle {
     font-size: 2rem;
     background: #3F4669;
     color: white;
     cursor: pointer;
-}
-
-.form label {
     display: none;
 }
 
-.form input {
-    border: none;
-    width: 100%;
-    height: 2rem;
-    padding: 0 1rem;
+.block_label {
+    font-weight: 500;
+    font-size: var(--p1);
 }
 
-.form textarea {
-    border: none;
+.block_input {
+    color: var(--green-vogue-950);
+    border: 1px solid var(--green-vogue-300);
+    border-radius: .25rem;
     width: 100%;
-    height: 128px;
-    padding: .5rem 1rem;
+    padding: 1rem 1rem;
+    background: none;
 }
 
-.form > button {
-    background-color: #3F4669;
-    border: none;
-    height: 2.5rem;
-    font-size: 1rem;
-    color: white;
+select {
+    cursor: pointer;
+}
+
+.form_buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.form_cancel {
+    color: var(--green-vogue-500);
+    background: none;
     font-weight: bold;
+    border: 1px solid var(--green-vogue-500);
+    border-radius: .25rem;
+    padding: 1rem 0;
+    width: 100%;
+    cursor: pointer;
+    transition: border .3s ease-out, color .3s ease-out;
+}
+
+.form_cancel:hover {
+    color: var(--green-vogue-600);
+    border: 1px solid var(--green-vogue-600);
+}
+
+.form_submit {
+    color: var(--green-vogue-50);
+    background: var(--green-vogue-500);
+    font-weight: bold;
+    border: none;
+    border-radius: .25rem;
+    padding: 1rem 0;
+    width: 100%;
     cursor: pointer;
     transition: background .3s ease-out;
 }
 
-.form > button:hover {
-    background: #292D42;
+.form_submit:hover {
+    background: var(--green-vogue-600);
 }
 
-/* Desktop query */
-@media(min-width: 768px){
-    main {
-        max-width: 944px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-around;
-        gap: 1rem;
-    }
+.form_delete {
+    color: #FF0000;
+    background: none;
+    font-weight: bold;
+    border: 1px solid #FF0000;
+    border-radius: .25rem;
+    padding: 1rem 0;
+    width: 100%;
+    cursor: pointer;
+    transition: color .3s ease-out, border .3s ease-out;
+}
 
-    .main-container {
-        width: 100%;
-        height: 100%;
-    }
+.form_delete:hover {
+    color: #FF3333;
+    border: 1px solid #FF3333;
+}
+/* /Add form */
 
-    .resume {
-        width: 300px;
-        height: 300px;
-    }
+/* Edit form */
+.app_editForm {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+}
 
-    .resume-total {
-        font-size: 28px;
-    }
+.editForm_content {
+    width: 100%;
+    max-width: 321px;
+    background-color: #C1DDF6;
+    transform: scale(0);
+    transition: transform .3s ease-out;
+}
 
-    .mobile-circle {
-        width: 200px;
-        height: 200px;
-    }
+.editForm_form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+/* /Edit form */
 
-    .bx-x {
-        display: none !important;
-    }
+/* Delete card */
+.app_deleteCard {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+}
 
-    .add-form {
-        transform: scale(1);
-        background: none;
-        position: initial;
-        width: auto;
-        height: auto;
-    }
+.deleteCard_content {
+    background-color: #C1DDF6;
+    width: 100%;
+    max-width: 321px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    transform: scale(0);
+    transition: transform .3s ease-out;
+}
 
-    .add-form-content {
-        transform: scale(1);
-    }
+.deleteCard_buttons {
+    display: flex;
+    gap: 1rem;
+}
+/* Delete card */
 
-    .btn-container {
-        display: none;
-    }
+/* Error form */
+.error_form {
+    border-color: #FF0000;
+}
 
-    .items {
-        margin: 0;
-        width: 100%;
-    }
+.error_text {
+    color: #FF0000;
+    font-size: var(--p2);
+    user-select: none;
+    opacity: 0;
+}
 
-    .item-block {
-        width: 100%;
-        max-width: 450px;
-    }
+.active {
+    opacity: 1;
+}
+/* /Error form */
+
+.handle_form {
+    transform: scale(1);
 }

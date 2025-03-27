@@ -10,49 +10,113 @@
 </head>
 <body>
     <header class="header">
-        <h3>Sueldo</h3>
-        <h1>$<span id="balance">0</span></h1>
+        <h1 class="header_title">Saldo</h1>
+        <h2 class="header_sueldoAmount">$<span id="header_balance">0</span></h2>
     </header>
-    <main>
-        <article class="main-container">
-            <section class="resume" id="resume">
-                <svg width="97" height="97" class="resume-circle">
+    <main class="app">
+        <section class="app_porcent">
+            <article class="porcent" id="porcent">
+                <svg class="porcent_circle">
                     <circle r="49%" cx="50%" cy="50%" pathlength="100" id="circle"></circle>
                     <circle r="49%" cx="50%" cy="50%" pathlength="100" id="circleProgress"></circle>
                 </svg>
-                <span class="resume-total">$<span id="totalOutgress">0</span></span>
-            </section>
-            <section class="add-form" id="formContainer">
-                <div class="add-form-content" id="formContent">
-                    <form class="form" id="form">
-                        <div class="form-title">
-                            <h2>Agregar item</h2>
-                            <i class='bx bx-x' onclick="closeForm()"></i>
-                        </div>
-                        <div class="item-input">
-                            <label for="item">Item</label>
-                            <input type="text" name="item" id="item" autocomplete="off" placeholder="Ingreso / Egreso">
-                        </div>
-                        <div class="item-input">
-                            <label for="monto">Monto</label>
-                            <input type="number" name="monto" id="monto" placeholder="Monto" step="0.01">
-                            <i class='bx bx-plus-circle' id="plusCircle" onclick="handlePlus()"></i>
-                            <i class='bx bx-minus-circle' id="minusCircle" onclick="handleMinus()" style="display: none;"></i>
-                        </div>
-                        <div class="item-input">
-                            <label for="desc">Descripción</label>
-                            <textarea name="desc" id="desc" placeholder="Descripción"></textarea>
-                        </div>
-                        <button type="submit" id="submitBtn">Enviar</button>
-                    </form>
+                <div class="porcent_total">
+                    <p class="porcent_gastoAmount">Gasto</p>
+                    <span class="porcent_totalOutgress" id="porcent_outgress">$0</span>
                 </div>
-            </section>
-        </article>
-        <section class="items" id="items"></section> <!-- Add elements here! -->
-        <section class="btn-container">
-            <button class="add-btn" onclick="showForm()">Agregar item</button>
+            </article>
         </section>
-        
+        <section class="app_date">
+            <span class="date_down" onclick="date.decrementDate()"><</span>
+            <p class="date_text" id="dateText"></p>
+            <span class="date_up" onclick="date.incrementDate()">></span>
+        </section>
+        <section class="app_items" id="items"></section> <!-- Add elements here! -->
+        <section class="app_button">
+            <button class="add_btn" onclick="toggleAddForm()">Agregar registro</button>
+        </section>
+        <section class="app_addForm" id="addForm">
+            <div class="addForm_content" id="addFormContent">
+                <form class="addForm_form" id="addForm_Form" onsubmit="SubmitAddForm(event)">
+                    <div class="form_header">
+                        <h2 class="form_title">Agregar registro</h2>
+                    </div>
+                    <div class="form_block">
+                        <label class="block_label" for="registro">Registro</label>
+                        <input class="block_input" type="text" name="registro" id="registro" autocomplete="off" placeholder="Ingrese el registro">
+                        <p class="error_text">Este campo es obligatorio.</p>
+                    </div>
+                    <div class="form_block">
+                        <label class="block_label" for="monto">Monto</label>
+                        <input class="block_input" type="number" name="monto" id="monto" placeholder="Ingrese el monto" step="0.01">
+                        <p class="error_text">Este campo es obligatorio.</p>
+                    </div>
+                    <div class="form_block">
+                        <label class="block_label" for="type">Tipo de registro</label>
+                        <select name="type" id="type" class="block_input">
+                            <option value="" disabled selected>Seleccione el tipo de registro</option>
+                            <option value="ingreso">Ingreso</option>
+                            <option value="egreso">Egreso</option>
+                        </select>
+                        <p class="error_text">Seleccione una opción.</p>
+                        
+                    </div>
+                    <div class="form_buttons">
+                        <button type="button" class="form_cancel" onclick="toggleAddForm()">Cancelar</button>
+                        <button class="form_submit" type="submit">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="app_editForm" id="editForm">
+            <div class="editForm_content" id="editFormContent">
+                <form class="editForm_form" id="editForm_form" onsubmit="submitEditForm(event)">
+                    <div class="form_header">
+                        <h2 class="form_title">Editar registro</h2>
+                    </div>
+                    <div class="form_block">
+                        <label for="id" class="block_label">ID</label>
+                        <input type="text" name="id" id="id" class="block_input" disabled>
+                        <p class="error_text">Este campo es obligatorio.</p>
+                    </div>
+                    <div class="form_block">
+                        <label for="editRegistro" class="block_label">Registro</label>
+                        <input type="text" name="editRegistro" id="editRegistro" class="block_input" autocomplete="off" placeholder="Ingrese el registro">
+                        <p class="error_text">Este campo es obligatorio.</p>
+                    </div>
+                    <div class="form_block">
+                        <label for="editMonto" class="block_label">Monto</label>
+                        <input type="number" name="editMonto" id="editMonto" class="block_input" placeholder="Ingrese el monto" step="0.01">
+                        <p class="error_text">Este campo es obligatorio.</p>
+                    </div>
+                    <div class="form_block">
+                        <label for="editType" class="block_label">Tipo de registro</label>
+                        <select name="editType" id="editType" class="block_input">
+                            <option value="" disabled selected>Seleccione el tipo de registro</option>
+                            <option value="ingreso">Ingreso</option>
+                            <option value="egreso">Egreso</option>
+                        </select>
+                        <p class="error_text">Seleccione una opción.</p>
+                        
+                    </div>
+                    <div class="form_buttons">
+                        <button type="button" class="form_cancel" onclick="toggleEditForm()">Cancelar</button>
+                        <button type="submit" class="form_submit">Enviar</button>
+                        <button type="button" class="form_delete" onclick="toggleDeleteCard()">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="app_deleteCard" id="deleteCard">
+            <div class="deleteCard_content" id="deleteCardContent">
+                <h2>Borrar registro</h2>
+                <p>¿Estás seguro que quieres eliminar este registro? Esta acción es irreversible.</p>
+                <div class="deleteCard_buttons">
+                    <button type="button" class="form_cancel" onclick="toggleDeleteCard()">Cancelar</button>
+                    <button type="button" class="form_delete" onclick="deleteRegistro(event)">Eliminar</button>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script src="assets/js/main.js"></script>
