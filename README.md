@@ -4,8 +4,8 @@ Control de gastos es una aplicación web que permite controlar gastos del usuari
 
 ## Imágenes
 
-![](./assets/images/controldegastosmobile.jpeg)
-![](./assets/images/controldegastosdesktop.jpeg)
+![](./assets/images/arielnicolas2021.github.io_Control-de-gastos_(Desktop%20figma).png)
+![](./assets/images/arielnicolas2021.github.io_Control-de-gastos_(Mobile%20figma).png)
 
 ## Link
 [Ver el sitio web](https://arielnicolas2021.github.io/Control-de-gastos/)
