@@ -273,10 +273,15 @@ class GetDate {
                 case 7:
                 case 5:
                     if (this.day == 1) {
-                        this.day = 30
-                        this.month--
+                        if (this.month == 2 || this.month == 4 || this.month == 6 || this.month == 8 || this.month == 9 || this.month == 11) {
+                            this.day = 31
+                            this.month--
+                        } else {
+                            this.day = 30
+                            this.month--
+                        }
                     } else {
-                        this.month--
+                        this.day--
                     }
                     break
                 case 11:
